@@ -1,0 +1,21 @@
+<div class="card mb-3" (click)="goToDetailsPage()">
+    <div class="row g-0">
+        <h5 *ngIf="!isSmallCard" class="card-title1">{{news?.title}}</h5>
+        <div class="col">
+            <div class="card-body">
+                <div class="image">
+                    <img [src]="news.urlToImage" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="description">
+                    <p [class]="isSmallCard ? 'small_p' : 'card-text'">{{news?.content}}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row second-row">
+        <i class="fas fa-bookmark" *ngIf="!isSmallCard"></i>
+
+    </div>
+</div>
