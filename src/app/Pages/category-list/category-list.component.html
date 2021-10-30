@@ -1,66 +1,30 @@
-<carousel>
+<app-header></app-header>
+<div class="container">
+    <carousel>
 
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
 
-        <div class="container">
-            <div class="card" style="width: 15rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+        <div class="carousel-cell" *ngFor="let item of categoryArray">
+            <!-- <img src="path_to_image"> -->
+            <div class="category-list" (click)="getCategoryNews(item)">
+                <div class="carousel-cell-custom" [ngStyle]="{'background-color: #f00': item._id === catId}">
+                    <p>{{item.category_name}}</p>
                 </div>
             </div>
         </div>
+    </carousel>
+</div>
+
+
+<div class="container">
+    <h1>News on {{selected_category.category_name}}</h1>
+    <div *ngFor="let item of newscategoryArray">
+        <app-news-card [news]="item"></app-news-card>
+
     </div>
+</div>
 
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-
-
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-
-
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-
-
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-
-
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-
-
-
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-
-
-    <div class="carousel-cell">
-        <!-- <img src="path_to_image"> -->
-        <p>a</p>
-    </div>
-</carousel>
+<div class="container" *ngIf="!newscategoryArray.length">
+    <h4>
+        News doesn't exists.
+    </h4>
+</div>

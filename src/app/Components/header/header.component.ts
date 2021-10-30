@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewsService } from 'src/app/service/news.service';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-header',
@@ -9,6 +11,7 @@ import { NewsService } from 'src/app/service/news.service';
 })
 export class HeaderComponent implements OnInit {
 
+  public categoryArray = [];
   public user: any;
   public isApiCalling: boolean = false;
   constructor(
@@ -23,14 +26,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.httpService.getUser();
-
+    this.category();
   }
 
   goToLoginPage() {
     this.router.navigate(['/login'])
   }
 
-
+  goToCatList(item) {
+    this.httpService.selected_cat = item;
+    this.router.navigate(['/category-list'])
+  }
 
   register(name, email, password) {
     console.log(name, email, password);
@@ -57,17 +63,17 @@ export class HeaderComponent implements OnInit {
       password: login_password
     }
 
-    window.location.reload();
+
 
     this.httpService.httpPost('api/users/login', body).subscribe(res => {
       localStorage.setItem("user", JSON.stringify(res))
       this.isApiCalling = false;
-
+      window.location.reload();
       console.log("res", res);
     }, (error: any) => {
       console.log(error);
       this.isApiCalling = false;
-
+      alert(error.error.msg)
     })
   }
 
@@ -87,6 +93,16 @@ export class HeaderComponent implements OnInit {
 
       }
     })
+  }
+
+  category() {
+    this.httpService.httpGet('api/category/getAllCat').subscribe(res => {
+      this.categoryArray = res['data'];
+      console.log("res", res);
+    }, (error: any) => {
+      console.log(error);
+    })
+
   }
 
 }

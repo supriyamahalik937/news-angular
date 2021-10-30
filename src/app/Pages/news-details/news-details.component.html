@@ -14,9 +14,21 @@
         </div>
 
     </div>
+
+    <div class="comm-user" *ngFor="let item of newsDetail?.comments">
+
+        <i class="far fa-user"></i>
+
+        <div>
+            <p>Supriya</p>
+            <p class="comment-dtl">{{item?.comment}}</p>
+        </div>
+
+    </div>
+
     <div class="row n-d-row">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-        <button type="button" class="btn btn-primary">PostComment</button>
+        <textarea name="" class="news-textarea" #comment cols="30" rows="10"></textarea>
+        <button (click)="AddComment(comment.value)" type="button" class="btn btn-primary">PostComment</button>
 
     </div>
 </div>

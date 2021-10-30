@@ -7,9 +7,71 @@
 }
 
 .btn-search {
-  width: 20%;
   background-color: #ffc107;
 }
+
+.profile-icon {
+  font-size: 30px;
+  margin-left: 40px;
+  color: #eff;
+}
+
+.img-fluid {
+  border-radius: 50%;
+  width: 200px;
+}
+
+.form-box {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+.fa-search {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 20px;
+}
+
+.fa-sign-in-alt {
+  font-size: 18px;
+  margin-right: 8px;
+}
+
+.favourite-icon {
+  color: #fff;
+  margin-left: 15px;
+  font-size: 25px;
+}
+
+.fa-bookmark {
+  color: #880e4f;
+  font-size: 12px;
+  padding-right: 8px;
+}
+
+.modal-header {
+  background-color: #880e4f;
+}
+
+.modal-title {
+  color: #eff;
+}
+
+.btn-logout {
+  background-color: #880e4f;
+  border-radius: 4px;
+  color: #eff;
+  padding: 10px;
+}
+
+.fa-sign-out-alt {
+  color: #880e4f;
+  font-size: 12px;
+  padding-right: 8px;
+}
+
+
 
 /* .image-container {
   background: url('bg.png') center no-repeat;

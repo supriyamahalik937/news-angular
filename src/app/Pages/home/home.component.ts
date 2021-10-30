@@ -22,15 +22,15 @@ export class HomeComponent implements OnInit {
 
 
   getNews() {
-    // this.spinner.show();
-    this.httpService.httpGet('api/news/getAllNews/1/5').subscribe(res => {
+    this.spinner.show();
+    this.httpService.httpGet('api/news/getAllNews/1/20').subscribe(res => {
       this.isApiCalling = false;
       this.spinner.hide();
       this.newsArray = res['data'];
       console.log("res ", res);
     }, (error: any) => {
       this.isApiCalling = false;
-      // this.spinner.hide();
+      this.spinner.hide();
 
       console.log(error);
     })

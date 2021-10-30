@@ -17,45 +17,76 @@
             Category
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li *ngFor="let item of categoryArray" routerLinkActive="router-link-active"><a class="dropdown-item"
+                (click)="goToCatList(item)">{{item?.category_name}}</a></li>
           </ul>
         </li>
       </ul>
       <div class="flex">
         <div class="login">
           <a class="nav-link " *ngIf="!user?.token" aria-current="page" href="#" data-bs-toggle="modal"
-            data-bs-target="#exampleModal"><i class="fas fa-sign-in-alt">Sign-in</i></a>
-
-
-          <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" *ngIf="user?.token" href="#" role="button"
-              id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown link
-            </a>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="nav-link " aria-current="page" (click)="logout()"><i
-                    class="fas fa-sign-out-alt">Logout</i></a></li>
-              <li><a class="dropdown-item" href="#"><i class="far fa-user-circle">Profile</i></a></li>
-              <li><a class="dropdown-item" href="#"><i class="fas fa-bookmark">Favourite News</i></a></li>
-            </ul>
-          </div>
-
-
+            data-bs-target="#exampleModal"><i class="fas fa-sign-in-alt"></i>Sign-in</a>
         </div>
       </div>
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-search" type="submit" style="width: 20px;">Search</button>
+        <button class="btn btn-search" type="submit"><i class="fas fa-search"></i></button>
       </form>
+      <div class="profile-icon dropstart">
+        <i class="far fa-user-circle" *ngIf="user?.token" type="button" id="dropdownMenuButton1"
+          data-bs-toggle="dropdown" aria-expanded="false"> </i>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profile-modal"><i
+                class="far fa-user-circle"></i>Profile</a></li>
+          <li><a class="dropdown-item" href="#"><i class="fas fa-bookmark"></i>Favourite News</a>
+          </li>
+          <li><a class="nav-link " aria-current="page" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          </li>
+        </ul>
+
+      </div>
+
     </div>
   </div>
 </nav>
+
+<!--Profile-->
+
+<div class="modal fade" id="profile-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profie Detail</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container text-center">
+          <img src="assets\pics/profile.jpg" class="img-fluid">
+          <table class="table">
+
+            <tbody>
+              <tr>
+                <th scope="row">Name:</th>
+                <td>{{user?.name}}</td>
+
+              </tr>
+              <tr>
+                <th scope="row">Email:</th>
+                <td>{{user?.email}}</td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn-logout">Logout</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--Login-->
 
@@ -71,74 +102,46 @@
               <h4 class="text-center mb-4">
                 Login into account
               </h4>
-              <form class="signup-form">
 
-                <div class="form-input">
-                  <span><i class="fa fa-envelope-o"></i></span>
-                  <input type="email" #login_email placeholder="Email Address" tabindex="10" required>
-                </div>
-                <div class="form-input">
-                  <span><i class="fa fa-key"></i></span>
-                  <input type="password" #login_password placeholder="Password" required>
-                </div>
+              <div class="form-input">
+                <span><i class="fa fa-envelope-o"></i></span>
+                <input type="email" #login_email placeholder="Email Address" tabindex="10" required>
+              </div>
+              <div class="form-input">
+                <span><i class="fa fa-key"></i></span>
+                <input type="password" #login_password placeholder="Password" required>
+              </div>
 
-                <div class="mb-3 d-flex align-items-center">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="cb1">
-                    <label class="custom-control-label" for="cb1">Remember me</label>
-                  </div>
+              <div class="mb-3 d-flex align-items-center">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" class="custom-control-input" id="cb1">
+                  <label class="custom-control-label" for="cb1">Remember me</label>
                 </div>
+              </div>
 
-                <div class="mb-3">
-                  <button type="submit" class="btn btn-block" (click)="login(login_email.value,login_password.value)">
-                    Login
-                    <i *ngIf="isApiCalling" class="fas fa-spinner"></i>
-                  </button>
-                </div>
-                <div class="text-center mb-5">
-                  Don't have an account?
-                  <a class="login-link" href="login.html">Register here</a>
-                </div>
-              </form>
+              <div class="mb-3">
+                <button type="submit" class="btn btn-block" (click)="login(login_email.value,login_password.value)">
+                  Login
+                  <i *ngIf="isApiCalling" class="fas fa-spinner"></i>
+                </button>
+              </div>
+              <div class="text-center mb-5">
+                Don't have an account?
+                <a class="login-link" type="button" aria-current="page" data-bs-toggle="modal"
+                  data-bs-target="#registerModal">Register here</a>
+              </div>
             </div>
           </div>
-          <!-- <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign-in</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" #login_email class="form-control" id="exampleFormControlInput1"
-            placeholder="name@example.com">
         </div>
-
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Password</label>
-          <input type="password" #login_password class="form-control" id="exampleFormControlInput1"
-            placeholder="Enter your password">
-        </div> -->
-
-        </div>
-        <!-- <div class="modal-footer">
-          <h5>New user <a href="" data-bs-toggle="modal" data-bs-target="#exampleModal1">Register Here</a></h5>
-          <button type="button" class="btn btn-primary"
-            (click)="login(login_email.value,login_password.value)">Login</button>
-        </div> -->
       </div>
     </div>
   </div>
 
   <!--Register-->
 
-  <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
-        <!-- <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Sign-Up</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div> -->
-        <!-- <div class="modal-body"> -->
         <div class="container-fluid">
           <div class="row">
             <div class=" form-block px-4">
@@ -170,7 +173,7 @@
 
                   <div class="mb-3">
                     <button type="submit" class="btn btn-block"
-                      (click)="register(name.value,email.value,password.value)" (click)="opensweetalert()">
+                      (click)="register(name.value,email.value,password.value)">
                       Register <i *ngIf="isApiCalling" class="fas fa-spinner"></i>
                     </button>
                   </div>
@@ -185,27 +188,10 @@
 
             <!-- </div> -->
           </div>
-          <!-- <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Name</label>
-          <input type="text" #name class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Name">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" #email class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-        </div>
 
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Password</label>
-          <input type="passwword" #password class="form-control" id="exampleFormControlInput1"
-            placeholder="Enter your password">
-        </div> -->
 
         </div>
-        <!-- <div class="modal-footer">
 
-        <button type="button" class="btn btn-primary"
-          (click)="register(name.value,email.value,password.value)">Submit</button>
-      </div> -->
       </div>
     </div>
   </div>

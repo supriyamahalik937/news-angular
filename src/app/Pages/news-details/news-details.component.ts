@@ -35,4 +35,20 @@ export class NewsDetailsComponent implements OnInit {
     })
   }
 
+  AddComment(comment) {
+    console.log(comment);
+
+    let body = {
+      newsId: this.newsId,
+      comment: comment
+
+    }
+
+    this.httpService.httpPut(`api/news/add/comment/onNews`, body).subscribe(res => {
+
+    }
+
+    )
+  }
+
 }

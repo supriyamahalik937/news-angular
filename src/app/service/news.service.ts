@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class NewsService {
 
+  public selected_cat: any;
   constructor(
     private http: HttpClient
   ) { }
@@ -21,6 +22,14 @@ export class NewsService {
     let full_path = environment.baseUrl + url;
 
     return this.http.post(full_path, body, header);
+  }
+
+  httpPut(url, body: any) {
+    let user = this.getUser();
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', `Bearer ${user?.token}`);
+    let full_path = environment.baseUrl + url;
+    return this.http.put(full_path, body, { headers });
   }
 
   getUser() {
