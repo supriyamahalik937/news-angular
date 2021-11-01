@@ -1,9 +1,9 @@
 .carousel-cell-custom {
   height: 150px;
   justify-content: center;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 5px;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   margin-left: 60px;
   display: flex;
   align-items: center;
@@ -16,4 +16,9 @@
 
 .container {
   margin-top: 70px;
+}
+
+
+.category-list {
+  background-color: green;
 }

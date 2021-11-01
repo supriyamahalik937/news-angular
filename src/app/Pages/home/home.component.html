@@ -1,4 +1,19 @@
 <app-header></app-header>
+<div class="container">
+  <!-- <carousel [images]="{{item?.urlToImage}}">
+  </carousel> -->
+  <carousel style="z-index: 0;" [objectFit]="'cover'" [cellWidth]="'100%'" [height]="300" [autoplay]="true"
+    [dots]="true" [loop]="true">
+    <div class="carousel-cell" *ngFor="let item of newsSlider ">
+      <div>
+        <img src="{{item?.urlToImage}}">
+        <p>
+          {{item?.title}}
+        </p>
+      </div>
+    </div>
+  </carousel>
+</div>
 
 <div class="container">
   <h1 class="top-heading">
@@ -22,7 +37,7 @@
 
       </div>
     </div>
-    <div class="col-4">
+    <div class="col-4 top-news-container">
       <h1 class="top-heading">
         Top News
       </h1>

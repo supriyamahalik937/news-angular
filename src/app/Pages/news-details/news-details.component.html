@@ -15,20 +15,23 @@
 
     </div>
 
-    <div class="comm-user" *ngFor="let item of newsDetail?.comments">
+    <div style="margin-top: 50px;">
+        <div class="comm-user" *ngFor="let item of newsDetail?.comments">
 
-        <i class="far fa-user"></i>
+            <i class="far fa-user"></i>
 
-        <div>
-            <p>Supriya</p>
-            <p class="comment-dtl">{{item?.comment}}</p>
+            <div class="user-comment">
+                <p class="user-name">{{item?.user?.name}}</p>
+                <p class="comment-dtl">{{item?.comment}}</p>
+            </div>
+
         </div>
 
+        <div class="row n-d-row">
+            <textarea name="" class="news-textarea" #comment cols="30" rows="10"></textarea>
+            <button (click)="AddComment(comment.value)" type="button" class="btn btn-primary">Post Comment</button>
+
+        </div>
     </div>
 
-    <div class="row n-d-row">
-        <textarea name="" class="news-textarea" #comment cols="30" rows="10"></textarea>
-        <button (click)="AddComment(comment.value)" type="button" class="btn btn-primary">PostComment</button>
-
-    </div>
 </div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FavListComponent } from './fav-list/fav-list.component';
 import { CategoryListComponent } from './Pages/category-list/category-list.component';
 import { HomeComponent } from './Pages/home/home.component';
 import { NewsDetailsComponent } from './Pages/news-details/news-details.component';
@@ -23,6 +24,9 @@ const routes: Routes = [
 
   {
     path: 'login', component: CategoryListComponent
+  },
+  {
+    path: 'fav-list', component: FavListComponent
   }
 
 

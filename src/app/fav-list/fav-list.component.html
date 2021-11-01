@@ -1,0 +1,7 @@
+<app-header></app-header>
+<div class="container">
+    <h3 class="fav-heading">Favourite News</h3>
+    <div class="fav-list col-md-8" *ngFor="let item of favNews">
+        <app-news-card [news]="item?.news"></app-news-card>
+    </div>
+</div>

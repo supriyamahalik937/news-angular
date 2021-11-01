@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewsService } from 'src/app/service/news.service';
 
@@ -10,6 +10,9 @@ import { NewsService } from 'src/app/service/news.service';
 export class NewsDetailsComponent implements OnInit {
   public newsId: string;
   public newsDetail: any = {};
+
+  @ViewChild('comment', { static: true }) txtArea: ElementRef;
+
   constructor(
     private httpService: NewsService,
     private route: ActivatedRoute) {
@@ -19,13 +22,17 @@ export class NewsDetailsComponent implements OnInit {
 
   }
 
+
   ngOnInit(): void {
     console.log("newsId ", this.newsId);
     this.getNewsDetails();
+    this.checkNewsIsfav();
 
   }
 
   getNewsDetails() {
+    console.log("txtArea ", this.txtArea);
+
     this.httpService.httpGet(`api/news/getById/${this.newsId}`).subscribe(res => {
       console.log(res);
       this.newsDetail = res['data'];
@@ -37,18 +44,26 @@ export class NewsDetailsComponent implements OnInit {
 
   AddComment(comment) {
     console.log(comment);
-
     let body = {
       newsId: this.newsId,
       comment: comment
-
     }
-
     this.httpService.httpPut(`api/news/add/comment/onNews`, body).subscribe(res => {
+      console.log(res);
+      this.getNewsDetails();
+      this.txtArea.nativeElement.value = "";
+    }, (error) => {
+      console.log(error);
+    });
+  }
 
-    }
 
-    )
+  checkNewsIsfav() {
+    this.httpService.httpGet(`api/users/checkExists/fav/${this.newsId}`).subscribe(res => {
+      console.log("checkNewsIsfav ", res);
+    }, (error) => {
+      console.log(error);
+    })
   }
 
 }

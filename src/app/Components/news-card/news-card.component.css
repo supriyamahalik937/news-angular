@@ -1,8 +1,8 @@
 .fa-bookmark {
-
-  color: rgb(238, 52, 52);
-  width: 80px;
+  width: 30px;
   height: 30px;
+  color: rgb(221, 221, 221);
+  font-size: 18px;
 }
 
 .card-body {
@@ -17,11 +17,13 @@
 }
 
 .img-fluid {
-  height: 130px;
   object-fit: cover;
   object-position: center center;
   max-width: 120px;
+  object-fit: cover;
 }
+
+
 
 .small_p {
   display: -webkit-box;
@@ -29,6 +31,8 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  font-size: 14px;
+  padding-right: 10px;
 }
 
 .favourite-col {
@@ -37,8 +41,29 @@
 
 }
 
+.card-text {
+  padding-right: 20px;
+}
+
 .description {
   margin-top: 15px;
   margin-left: 15px;
   font-size: 20px;
+}
+
+.views {
+  margin-left: 5px;
+  font-size: 15px;
+}
+
+.fa-eye {
+  font-size: 15px;
+}
+
+
+@media (max-width:500px) and (min-width: 300px) {
+  .mb-3 {
+    display: block;
+
+  }
 }

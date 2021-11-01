@@ -5,11 +5,12 @@
 
         <div class="carousel-cell" *ngFor="let item of categoryArray">
             <!-- <img src="path_to_image"> -->
-            <div class="category-list" (click)="getCategoryNews(item)">
-                <div class="carousel-cell-custom" [ngStyle]="{'background-color: #f00': item._id === catId}">
-                    <p>{{item.category_name}}</p>
-                </div>
+            <!-- <div class="category-list" > -->
+            <div class="carousel-cell-custom card" (click)="getCategoryNews(item)"
+                [ngStyle]="{'background-color': item._id === selected_category._id ? '#e9ecef' : ''}">
+                <p>{{item.category_name}}</p>
             </div>
+            <!-- </div> -->
         </div>
     </carousel>
 </div>

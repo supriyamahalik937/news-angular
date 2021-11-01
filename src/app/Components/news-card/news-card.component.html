@@ -4,19 +4,19 @@
         <div class="col">
             <div class="card-body">
                 <div class="image" (click)="goToDetailsPage()">
-                    <img [src]="news.urlToImage" class="img-fluid rounded-start" alt="...">
+                    <img [src]="news.urlToImage" class="img-fluid rounded-start" alt="..."
+                        [ngStyle]="{height: isSmallCard ? '99%' : '99%'}">
                 </div>
                 <div class="description">
                     <p [class]="isSmallCard ? 'small_p' : 'card-text'">{{news?.title}}</p>
-                    <i class="fas fa-bookmark" *ngIf="!isSmallCard" (click)="AddFavourite()"></i>
+                    <i class="fas fa-bookmark" *ngIf="!isSmallCard"
+                        [ngStyle]="{color: isExistsInFav ? '#880e4f': '#ddd'}" (click)="AddFavourite()"></i>
+                    <i class="far fa-eye" *ngIf="!isSmallCard">
+                        <span class="views">{{news?.views}}</span>
+                    </i>
                 </div>
 
             </div>
-
-
         </div>
-
-
-
     </div>
 </div>

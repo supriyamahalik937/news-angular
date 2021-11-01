@@ -38,9 +38,10 @@
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#profile-modal"><i
                 class="far fa-user-circle"></i>Profile</a></li>
-          <li><a class="dropdown-item" href="#"><i class="fas fa-bookmark"></i>Favourite News</a>
+          <li><a class="dropdown-item" (click)="goToFavlist()"><i class="fas fa-bookmark"></i>Favourite News</a>
           </li>
-          <li><a class="nav-link " aria-current="page" (click)="logout()"><i class="fas fa-sign-out-alt"></i>Logout</a>
+          <li><a class="dropdown-item" aria-current="page" (click)="logout()"><i
+                class="fas fa-sign-out-alt"></i>Logout</a>
           </li>
         </ul>
 
@@ -82,8 +83,62 @@
       </div>
       <div class="modal-footer">
 
-        <button type="button" class="btn-logout">Logout</button>
+        <button type="button" class="btn-logout" (click)="logout()">Logout</button>
       </div>
+    </div>
+  </div>
+</div>
+
+
+<!--Register-->
+
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class=" form-block px-4">
+            <div class="col-lg-8 col-md-6 col-sm-8 col-xs-12 form-box">
+
+              <h4 class="text-center mb-4">
+                Create an account
+              </h4>
+              <div class="form-input">
+                <span><i class="fa fa-user-o"></i></span>
+                <input type="text" #name placeholder="Full Name" required>
+                <small class="text-danger" *ngIf="name.value ==='' && name.toched">Name is required</small>
+              </div>
+              <div class="form-input">
+                <span><i class="fa fa-envelope-o"></i></span>
+                <input type="email" #email placeholder="Email Address" tabindex="10" required>
+                <small class="text-danger">Email is required</small>
+              </div>
+              <div class="form-input">
+                <span><i class="fa fa-key"></i></span>
+                <input type="password" #password placeholder="Password" required>
+              </div>
+
+
+              <div class="mb-3">
+                <button type="submit" class="btn btn-block" (click)="register(name.value,email.value,password.value)">
+                  Register <i *ngIf="isApiCalling" class="fas fa-spinner"></i>
+                </button>
+              </div>
+              <div class="text-center mb-5">
+                Already have an account
+                <a class="login-link" type="button" aria-current="page" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal">Login Here</a>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- </div> -->
+        </div>
+
+
+      </div>
+
     </div>
   </div>
 </div>
@@ -133,65 +188,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
-  <!--Register-->
-
-  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class=" form-block px-4">
-              <div class="col-lg-8 col-md-6 col-sm-8 col-xs-12 form-box">
-
-                <h4 class="text-center mb-4">
-                  Create an account
-                </h4>
-                <form class="signup-form">
-                  <div class="form-input">
-                    <span><i class="fa fa-user-o"></i></span>
-                    <input type="text" #name placeholder="Full Name" required>
-                  </div>
-                  <div class="form-input">
-                    <span><i class="fa fa-envelope-o"></i></span>
-                    <input type="email" #email placeholder="Email Address" tabindex="10" required>
-                  </div>
-                  <div class="form-input">
-                    <span><i class="fa fa-key"></i></span>
-                    <input type="password" #password placeholder="Password" required>
-                  </div>
-
-                  <div class="mb-3 d-flex align-items-center">
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="cb1">
-                      <label class="custom-control-label" for="cb1">I agree all terms & conditions</label>
-                    </div>
-                  </div>
-
-                  <div class="mb-3">
-                    <button type="submit" class="btn btn-block"
-                      (click)="register(name.value,email.value,password.value)">
-                      Register <i *ngIf="isApiCalling" class="fas fa-spinner"></i>
-                    </button>
-                  </div>
-                  <div class="text-center mb-5">
-                    Already have an account
-                    <a class="login-link" href="login.html">Login here</a>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-
-            <!-- </div> -->
-          </div>
-
-
-        </div>
-
       </div>
     </div>
   </div>

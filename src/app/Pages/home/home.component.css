@@ -1,4 +1,30 @@
 .top-heading {
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-top: 40px;
+
 }
+
+.container {
+  margin-top: 30px;
+}
+
+p {
+  position: absolute;
+  top: 45%;
+  color: #fff;
+  text-align: center;
+  left: 18%;
+  font-size: 20px;
+}
+
+@media (max-width:700px) and (min-width: 500px) {
+  .top-news-container {
+    display: none;
+  }
+}
+
+/* .home-slide {
+  object-fit: cover;
+  position: 0;
+} */

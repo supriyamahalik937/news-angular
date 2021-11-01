@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   logout() {
+    console.log("coming");
     localStorage.removeItem("user");
     window.location.reload();
   }
@@ -38,7 +39,20 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/category-list'])
   }
 
+  goToFavlist() {
+    this.router.navigate(['/fav-list'])
+  }
+
+
   register(name, email, password) {
+    if (name === "") {
+      alert("Name can't be empty!");
+      return;
+    } else if (email === "") {
+
+    }
+
+
     console.log(name, email, password);
 
     let body = {
@@ -49,6 +63,7 @@ export class HeaderComponent implements OnInit {
 
     this.httpService.httpPost('api/users', body).subscribe(res => {
       console.log("res", res);
+      this.opensweetalert('You are successfully registered', "You won't be able to revert this!");
     }, (error: any) => {
       console.log(error);
     })
@@ -64,12 +79,13 @@ export class HeaderComponent implements OnInit {
     }
 
 
-
     this.httpService.httpPost('api/users/login', body).subscribe(res => {
       localStorage.setItem("user", JSON.stringify(res))
       this.isApiCalling = false;
-      window.location.reload();
       console.log("res", res);
+
+      this.opensweetalert('You are successfully Logged in.', "You won't be able to revert this!");
+
     }, (error: any) => {
       console.log(error);
       this.isApiCalling = false;
@@ -77,19 +93,18 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  opensweetalert() {
+  opensweetalert(title, text) {
     Swal.fire({
-      title: 'You are successfully registered',
-      text: "You won't be able to revert this!",
+      title: title,
+      text: text,
       icon: 'success',
-      showCancelButton: true,
       confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
       confirmButtonText: 'Ok'
     }).then((result) => {
       if (result.isConfirmed) {
+        window.location.reload();
 
-        this.router.navigate(["/login"]);
+        // this.router.navigate(["/login"]);
 
       }
     })

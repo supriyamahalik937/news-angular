@@ -13,9 +13,14 @@ export class NewsService {
   ) { }
 
 
-  httpGet(url, header = {}) {
+  httpGet(url) {
+
+    let user = this.getUser();
+    let headers = new HttpHeaders();
+    headers = headers.append('Authorization', `Bearer ${user?.token}`);
+
     let full_path = environment.baseUrl + url;
-    return this.http.get(full_path, header);
+    return this.http.get(full_path, user?.token ? { headers } : {});
   }
 
   httpPost(url, body = {}, header = {}) {
@@ -24,7 +29,7 @@ export class NewsService {
     return this.http.post(full_path, body, header);
   }
 
-  httpPut(url, body: any) {
+  httpPut(url, body: any = {}) {
     let user = this.getUser();
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', `Bearer ${user?.token}`);

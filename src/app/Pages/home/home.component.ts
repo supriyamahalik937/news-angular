@@ -10,6 +10,7 @@ import { NewsService } from 'src/app/service/news.service';
 export class HomeComponent implements OnInit {
 
   public newsArray = [];
+  public newsSlider = [];
   isApiCalling: boolean = true;
   constructor(
     private httpService: NewsService,
@@ -18,6 +19,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getNews();
+    this.getNewsSlider();
   }
 
 
@@ -35,4 +37,15 @@ export class HomeComponent implements OnInit {
       console.log(error);
     })
   }
+
+  getNewsSlider() {
+    this.httpService.httpGet('api/news/getAllNews/slider').subscribe(res => {
+      this.newsSlider = res['data'];
+      console.log("getNewsSlider", res);
+    }, (error: any) => {
+      console.log(error);
+    })
+  }
+
+
 }

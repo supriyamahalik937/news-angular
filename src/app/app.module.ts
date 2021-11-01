@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { CommonModule } from '@angular/common';
+import { FavListComponent } from './fav-list/fav-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +23,8 @@ import { CommonModule } from '@angular/common';
     CategoryListComponent,
     HeaderComponent,
     FooterComponent,
-    NewsCardComponent
+    NewsCardComponent,
+    FavListComponent
 
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
